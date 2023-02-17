@@ -10,3 +10,13 @@ class Commune(BaseModel):
     codes_postaux: str
     rating: float
     average_rent: float
+    code: int
+
+    def get_commune_by_code(self, code: int):
+        query = """
+        SELECT * FROM communes WHERE code = %s
+        """
+        self.execute_query(query, (code,))
+        results = self.cursor.fetchall()
+        return [Commune(*row) for row in results]
+    

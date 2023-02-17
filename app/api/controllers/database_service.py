@@ -37,6 +37,8 @@ class DatabaseService:
             code_epci VARCHAR(255) NOT NULL,
             codes_postaux VARCHAR(255) NOT NULL,
             rent_average FLOAT NOT NULL
+            rating FLOAT NOT NULL
+
         );
         """
         self.execute_query(query)
@@ -59,10 +61,11 @@ class DatabaseService:
         code_epci: str,
         codes_postaux: List[str],
         rent_average: float,
+        rating: float,
     ):
         query = """
-        INSERT INTO communes (name, population, code_region, code_departement, siren, code_epci, codes_postaux, rent_average)
-        VALUES (%s, %s, %s, %s, %s, %s, %s, %s);
+        INSERT INTO communes (name, population, code_region, code_departement, siren, code_epci, codes_postaux, rent_average, rating)
+        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s);
         """
         self.cur.execute(
             query,
@@ -75,6 +78,7 @@ class DatabaseService:
                 code_epci,
                 codes_postaux,
                 rent_average,
+                rating,
             ),
         )
         self.conn.commit()
