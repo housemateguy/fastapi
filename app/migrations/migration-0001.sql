@@ -1,0 +1,1 @@
+COPY rent FROM '/path/to/app/api/static/indicateurs-loyers-appartements.csv' DELIMITER ',' CSV HEADER;
